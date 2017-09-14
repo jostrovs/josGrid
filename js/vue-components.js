@@ -28,6 +28,9 @@ Vue.component('vue-jos-grid', {
                         <template v-if="column.type == 'number'">
                             Number: {{entry[column.key]}}
                         </template>
+                        <template v-if="column.type == 'link'">
+                            Link: <a :href="entry[column.key].href">{{entry[column.key].text}}</a>
+                        </template>
                     </td>
                 </tr>
             </tbody>

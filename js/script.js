@@ -27,7 +27,7 @@ $(document).ready(function () {
                     {
                         key: 'test',
                         title: 'Testi',
-                        type: 'number'
+                        type: 'link'
                     },
                 ],
                 luokka: {
@@ -37,7 +37,7 @@ $(document).ready(function () {
                 {
                     name: 'aaa Chuck Norris',
                     power: "Infinity",
-                    test: 1,
+                    test: { href: 'http://a.b.c', text: "Linkki" }
                 },
                 {
                     name: 'aab Jackie Chan',
