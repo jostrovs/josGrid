@@ -1,0 +1,264 @@
+#app {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+#nav {
+    left: 8%;
+    right: 8%;
+    background: white;
+}
+
+#save {
+    position: fixed;
+    top: 5px;
+    right: 8%;
+    z-index: 100;
+}
+
+.table {
+    max-width: 800px;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    min-width: 100%;
+}
+
+h4 {
+    background: darkgrey;
+    color: white;
+    padding: 4px;
+}
+
+#debugDiv{
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	min-width: 60;
+	min-height: 40;
+	padding: 10px;
+}
+
+#debugDiv > button {
+	display: none;
+}
+
+#debugDiv:hover > button {
+	display: inline;
+}
+
+.rivi-label {
+	font-weight: bold;
+}
+
+.label {
+	display: inline-block;
+	text-align: center;
+	margin-right: 3px;
+    font-size: 14px;
+
+}
+
+.label span {
+	padding: 3px;
+	display: inline-block;
+	width: 26px;
+	border-radius: 4px;
+}
+
+.label-dark-red {
+	color: white;
+	background-color: #f00;
+	border: 1px solid #f88;
+}
+.label-red {
+	color: black;
+	background-color: #fbb;
+	border: 1px solid #f88;
+}
+.label-orange {
+	color: black;
+	background-color: #fdb;
+	border: 1px solid #fa8;
+}
+.label-blue {
+	color: white;
+	background-color: #bbf;
+	border: 1px solid #88f;
+}
+.label-green {
+	color: black;
+	background-color: #cfc;
+	border: 1px solid #7c7;
+}
+.label-yellow {
+	color: #222;
+	background-color: #ffb;
+	border: 1px solid #bb6;
+}
+.label-white {
+	color: #222;
+	background-color: white;
+	border: 1px solid #aaa;
+}
+
+.ruutu {
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	margin-right: -4px;
+	vertical-align: bottom;
+	text-align: center;
+	font-size: large;
+}
+
+.radio-div {
+	display: inline-block; 
+	padding: 3px;
+}
+
+.ruutu1 {
+	background: #cfc;
+}
+.ruutu2 {
+	background: #fff;
+}
+.ruutu3 {
+	background: #ffb;
+}
+.ruutu4 {
+	background: #fdb;
+}
+.ruutu5 {
+	background: #fbb;
+}
+.ruutu6 {
+	color: white;
+	background: #a33;
+	border-right: 1px solid black;
+}
+
+/* *************  Button  *************** */
+
+.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+	background:-moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#444;
+	font-family:Arial;
+	font-size:14px;
+	padding:6px 24px;
+	text-decoration:none;
+    margin-top: 2px;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+	background-color:#dfdfdf;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.myInput {
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    width: 60px;
+    padding: 4px 8px;
+}
+
+@media screen and (max-width: 1200px){
+    #app {
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    #nav {
+        left: 3px;
+        right: 3px;
+    }
+
+    .nav>li>a {
+        font-size: small;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    #save {
+        right: 5px;
+    }
+}
+
+
+/* Tooltipit */
+
+/* Tooltip */
+.test + .tooltip > .tooltip-inner {
+    background-color: #73AD21; 
+    color: #FFFFFF; 
+    border: 1px solid green;
+    padding: 15px;
+    font-size: 20px;
+}
+
+/* Tooltip on top */
+.test + .tooltip.top > .tooltip-arrow {
+    border-top: 5px solid green;
+}
+
+/* Tooltip on bottom */
+.test + .tooltip.bottom > .tooltip-arrow {
+    border-bottom: 5px solid blue;
+}
+
+/* Tooltip on left */
+.test + .tooltip.left > .tooltip-arrow {
+    border-left: 5px solid red;
+}
+
+/* Tooltip on right */
+.test + .tooltip.right > .tooltip-arrow {
+    border-right: 5px solid black;
+}
+
+#luonnos {
+	top: 30%;
+	left: 30%;
+    color: #fee;
+	font-size: 8em;
+	font-weight: bold;
+	text-align: center;
+	position: fixed;
+	display: inline-block;
+	border: 12px solid #fee;
+	padding: 28px;
+	border-radius: 36px;
+	-webkit-transform: rotate(-25deg);
+	-moz-transform: rotate(-25deg);
+	-o-transform: rotate(-25deg);
+	-ms-transform: rotate(-25deg);
+	transform: rotate(-25deg);
+	z-index: -1;
+  }

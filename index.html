@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="fi">
+
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>JOs Grid</title>
+    <meta name="description" content="JOs Grid">
+    <meta name="author" content="Jori Ostrovskij">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/toastr.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/jquery-3.1.1.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/toastr.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/lockr.js"></script>
+    <script src="js/vue-components.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+    <p>Täytyy tehdä sarakkeista konfiguroitavia, niin että jokaiselle on annettava vähintään nimi, mutta voi antaa myös muita
+        optioita, kuten tyypin, jonka mukaan voi sitten iffitellä templatessa.
+    </p>
+
+    
+    <div id="demo">
+        <vue-jos-grid
+            :data="gridData"
+            :options="gridOptions">
+        </vue-jos-grid>
+    </div>        
+
+</body>
+
+</html>
