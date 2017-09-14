@@ -15,6 +15,11 @@
     z-index: 100;
 }
 
+.width50 {
+	min-width: 50%;
+	max-width: 50%;
+}
+
 .table {
     max-width: 800px;
     border-collapse: collapse;

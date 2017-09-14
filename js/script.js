@@ -30,6 +30,8 @@ $(document).ready(function () {
                         type: 'number'
                     },
                 ],
+                luokka: {
+                },
             },
             gridData: [
                 {

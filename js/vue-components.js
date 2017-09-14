@@ -2,9 +2,13 @@
 Vue.component('vue-jos-grid', {
     template: `
         <div>
-        SortOrder: {{sortOrder}}<br>
-        SortCol: {{sortCol}}<br>
-        <table>
+        <input type="checkbox" v-model="options.luokka.table">Table<br>
+        <input type="checkbox" v-model="options.luokka['table-striped']">Table-striped<br>
+        <input type="checkbox" v-model="options.luokka['table-bordered']">Table-bordered<br>
+        <input type="checkbox" v-model="options.luokka['table-hover']">Table-hover<br>
+        <input type="checkbox" v-model="options.luokka['table-condensed']">Table-condensed<br>
+        
+        <table :class="options.luokka" style="max-width: 500;">
             <thead>
                 <tr>
                     <th v-for="column in columns" :class="{active: sortCol == column.key}">
@@ -40,6 +44,14 @@ Vue.component('vue-jos-grid', {
     // }
 
     data: function () {
+        this.options.luokka = {
+            'table': true,
+            'table-striped': true,
+            'table-bordered': true,
+            'table-hover': true,
+            'table-condensed': true,
+        };
+        
         let columns = [];
         let sortIndicators = {};
         this.options.columns.forEach(function (column) {
