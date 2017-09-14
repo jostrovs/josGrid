@@ -40,7 +40,6 @@ Vue.component('vue-jos-grid', {
     // }
 
     data: function () {
-        let columnNames = [];
         let columns = [];
         let sortIndicators = {};
         this.options.columns.forEach(function (column) {
@@ -48,7 +47,6 @@ Vue.component('vue-jos-grid', {
             localColumn.josSortOrder=0;
             if(column.type == undefined) localColumn.type = "text";
             if(column.name == undefined) localColumn.name = column.key;
-            columnNames.push(column.name);
             columns.push(localColumn);
             sortIndicators[column.key]=0;
         });
@@ -65,41 +63,18 @@ Vue.component('vue-jos-grid', {
             localData: localData,
             sortCol: '',
             sortOrder: 0,
-            filters: {power: "nan"},
-            columnNames: columnNames,
+            filters: {},
             columns: columns,
-            fsd: localData,
             sortIndicators: sortIndicators,
         }
     },
     computed: {
-        filteredData: function(){
-            let ret = this.localData;
-            for(let propertyName in this.filters){
-                if(this.filters.hasOwnProperty(propertyName) == false) continue;
-                let key = propertyName;
-                let value = this.filters[key];
-                console.log(key + ": " + value);
-
-                ret = ret.filter(item => item[key].toString().indexOf(value) > -1);
-            }
-
-            if(this.filters) return ret;
-            return ret;
-        },
         filteredSortedData: function(){
-            var ret = this.josData();
-            return ret;
-        },
-    },
-    methods: {
-        josData: function(){
             let ret = this.localData;
             for(let propertyName in this.filters){
                 if(this.filters.hasOwnProperty(propertyName) == false) continue;
                 let key = propertyName;
                 let value = this.filters[key];
-                console.log(key + ": " + value);
 
                 ret = ret.filter(item => item[key].toString().indexOf(value) > -1);
             }
@@ -108,7 +83,7 @@ Vue.component('vue-jos-grid', {
                 if(column.name == this.sortCol){
                     if(this.sortOrder == 0){
                         ret = ret.sort((a,b)=>{
-                            return b.josOrder-a.josOrder;
+                            return a.josOrder-b.josOrder;
                         });
                     } else {
                         ret = ret.sort((a,b)=>{
@@ -123,14 +98,10 @@ Vue.component('vue-jos-grid', {
                 }
             }
 
-            this.fsd=ret;
-            
-            for(let row of ret){
-                console.log(row["test"]);
-            }
             return ret;
-
         },
+    },
+    methods: {
         sortBy: function (key) {
             this.sortIndicators = {};
             if(this.sortCol != key){
