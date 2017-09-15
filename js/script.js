@@ -18,7 +18,9 @@ $(document).ready(function () {
                 columns: [
                     {
                         key: 'name',
-                        title: 'Nimi'
+                        title: 'Nimi',
+                        filterable: false,
+                        sortable: false,
                     },
                     {
                         key: 'power',

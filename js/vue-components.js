@@ -1,21 +1,18 @@
 
 Vue.component('vue-jos-grid', {
     template: `
-        <div>
-        <input type="checkbox" v-model="options.luokka.table">Table<br>
-        <input type="checkbox" v-model="options.luokka['table-striped']">Table-striped<br>
-        <input type="checkbox" v-model="options.luokka['table-bordered']">Table-bordered<br>
-        <input type="checkbox" v-model="options.luokka['table-hover']">Table-hover<br>
-        <input type="checkbox" v-model="options.luokka['table-condensed']">Table-condensed<br>
-        
+        <div class="jos-table-container">
         <table :class="options.luokka" style="max-width: 500;">
             <thead>
                 <tr>
                     <th v-for="column in columns" :class="{active: sortCol == column.key}">
-                        <span @click="sortBy(column.key)">{{column.title}}</span>
+                        <span @click="column.sortable != false && sortBy(column.key)">{{column.title}}</span>
                         <span v-if="sortIndicators[column.key]==1">Up</span>
                         <span v-if="sortIndicators[column.key]==-1">Down</span>
-                        <br><input style="width: 80%;" type="text" v-model="filters[column.key]">
+                        
+                        <template v-if="column.filterable != false">
+                            <br><input style="width: 80%;" type="text" v-model="filters[column.key]">
+                        </template>
                     </th>
                 </tr>
             </thead>
@@ -48,14 +45,17 @@ Vue.component('vue-jos-grid', {
 
     data: function () {
         this.options.luokka = {
-            'table': true,
-            'table-striped': true,
-            'table-bordered': true,
-            'table-hover': true,
-            'table-condensed': true,
+            'table': false,
+            'table-striped': false,
+            'table-bordered': false,
+            'table-hover': false,
+            'table-condensed': false,
+
+            'jos-table': true,
         };
         
         let columns = [];
+        let filters = {};
         let sortIndicators = {};
         this.options.columns.forEach(function (column) {
             let localColumn = column;
@@ -78,20 +78,17 @@ Vue.component('vue-jos-grid', {
             localData: localData,
             sortCol: '',
             sortOrder: 0,
-            filters: {},
             columns: columns,
             sortIndicators: sortIndicators,
+            filters: filters,
         }
     },
     computed: {
         filteredSortedData: function(){
+            let self = this;
             let ret = this.localData;
-            for(let propertyName in this.filters){
-                if(this.filters.hasOwnProperty(propertyName) == false) continue;
-                let key = propertyName;
-                let value = this.filters[key];
-
-                ret = ret.filter(item => item[key].toString().indexOf(value) > -1);
+            for(let column of this.columns){
+                ret = this.filterByColumn(column, ret);
             }
 
             for(let column of this.columns){
@@ -103,8 +100,8 @@ Vue.component('vue-jos-grid', {
                     } else {
                         ret = ret.sort((a,b)=>{
                             let r = 0;
-                            let v1 = a[column.key];
-                            let v2 = b[column.key]; 
+                            let v1 = self.getVal(column, a[column.key]);
+                            let v2 = self.getVal(column, b[column.key]); 
                             if(v1 < v2) r=-1;    
                             else if(v1 > v2) r=1;
                             return r*this.sortOrder;
@@ -128,7 +125,24 @@ Vue.component('vue-jos-grid', {
                 else if(this.sortOrder == 0) this.sortOrder = 1;
             }
             this.sortIndicators[key] = this.sortOrder;
+        },
+        getVal: function(column, entry){
+            if(column.type == 'link') return entry.text;
+            return entry;
+        },
+        filterByColumn: function(column, data){
+            let filter = this.filters[column.key];
+            if(filter == undefined || filter.length < 1) return data;
+            let ret = data; 
+          
+            ret = ret.filter(item =>{
+                let val = this.getVal(column, item[column.key]);
+                if(val == undefined) val = "";
+                val=val.toString();
+                return val.indexOf(this.filters[column.key]) > -1;
+            });
+            return ret;
         }
-      }
+    },
 });
 
